@@ -270,12 +270,6 @@ class Context {
     final intrinsic = Intrinsic.getByName(identifier);
     if (intrinsic != null) return intrinsic.getFunc();
 
-    print('identifier: $identifier\n'
-        'variables: ${variables?.toStringWithVM(vm)}\n'
-        'outerVars: ${outerVars?.toStringWithVM(vm)}\n'
-        'parent: ${parent?.toString()}\n'
-        'globals: ${root.variables?.toStringWithVM(vm)}\n');
-
     // No luck there either?  Undefined identifier.
     throw UndefinedIdentifierException(identifier);
   }
