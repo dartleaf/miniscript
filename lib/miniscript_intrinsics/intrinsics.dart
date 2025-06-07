@@ -1490,23 +1490,12 @@ class Intrinsics {
     //		hostInfo: URL or other short info about the host app
     f = Intrinsic.create("version");
     f.code = (context, [partialResult]) {
-      if (context.vm == null) {
-        // Handle case when VM is null (though this shouldn't normally happen)
-        final fallbackMap = ValMap();
-        fallbackMap["miniscript"] = ValString("1.6.2");
-        return IntrinsicResult(fallbackMap);
-      }
-
       if (context.vm!.versionMap == null) {
         final d = ValMap();
-        d["miniscript"] = ValString("1.6.2");
 
-        // Get a build date for our implementation
-        // In C# they're using assembly version info, we can use a constant or build-time value
-        final buildDate = DateTime.now();
-        d["buildDate"] = ValString(buildDate.toString().substring(0, 10));
+        d["buildDate"] = ValString(HostInfo.buildDate);
 
-        d["host"] = ValNumber(HostInfo.version);
+        d["host"] = ValString(HostInfo.version);
         d["hostName"] = ValString(HostInfo.name);
         d["hostInfo"] = ValString(HostInfo.info);
 
