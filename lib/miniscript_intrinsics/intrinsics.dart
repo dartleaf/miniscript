@@ -1,3 +1,5 @@
+// Copyright © 2025 by the authors of the project. All rights reserved.
+
 import 'dart:math' as math;
 import 'package:miniscript/miniscript_errors.dart';
 import 'package:miniscript/miniscript_intrinsics/host_info.dart';

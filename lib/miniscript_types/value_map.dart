@@ -118,8 +118,9 @@ class ValMap<T> extends Value {
       final parentPointer = ValuePointer<Value>();
       if (!obj.tryGetValue(ValString.magicIsA, parentPointer)) break;
       if (chainDepth++ > maxIsaDepth) {
-        throw MiniscriptException(
-            '__isa depth exceeded (perhaps a reference loop?)');
+        throw RuntimeException(
+          '__isa depth exceeded (perhaps a reference loop?)',
+        );
       }
       obj = parentPointer.value as ValMap?;
     }
@@ -147,8 +148,9 @@ class ValMap<T> extends Value {
       // Now extract the value from the pointer
       Value? parent = parentPointer.value;
       if (chainDepth++ > maxIsaDepth) {
-        throw MiniscriptException(
-            '__isa depth exceeded (perhaps a reference loop?)');
+        throw RuntimeException(
+          '__isa depth exceeded (perhaps a reference loop?)',
+        );
       }
       obj = parent as ValMap?;
     }
@@ -235,8 +237,9 @@ class ValMap<T> extends Value {
       if (pointer.value == type) return true;
       if (pointer.value is! ValMap) return false;
       if (chainDepth++ > maxIsaDepth) {
-        throw MiniscriptException(
-            '__isa depth exceeded (perhaps a reference loop?)');
+        throw RuntimeException(
+          '__isa depth exceeded (perhaps a reference loop?)',
+        );
       }
       pointer.value!.tryGetValue(ValString.magicIsA, pointer);
     }

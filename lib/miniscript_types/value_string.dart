@@ -56,8 +56,7 @@ class ValString extends Value {
     int i = index.intValue();
     if (i < 0) i += value.length;
     if (i < 0 || i >= value.length) {
-      throw MiniscriptException(
-          'Index Error (string index $index out of range)');
+      throw RuntimeException('Index Error (string index $index out of range)');
     }
     return ValString(value.substring(i, i + 1));
   }

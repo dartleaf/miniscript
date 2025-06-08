@@ -13,8 +13,8 @@ import '../value_pointer.dart' show ValuePointer;
 import '../miniscript_intrinsics/intrinsics.dart' show Intrinsics;
 import '../miniscript_errors.dart'
     show
-        LimitExceededException,
         KeyException,
+        RuntimeException,
         TypeException,
         UndefinedIdentifierException;
 
@@ -59,7 +59,7 @@ class ValSeqElem extends Value {
 
         // Otherwise, if we have an __isa, try that next.
         if (loopsLeft < 0) {
-          throw LimitExceededException(
+          throw RuntimeException(
             "__isa depth exceeded (perhaps a reference loop?)",
           );
         }

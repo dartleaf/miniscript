@@ -67,8 +67,7 @@ class Token {
 
   @override
   String toString() {
-    if (text == null) return type.toString();
-    return "$type($text)";
+    return Check.typeToString(type);
   }
 
   static final Token eol = Token(type: TokenType.eol);

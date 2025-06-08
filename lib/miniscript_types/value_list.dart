@@ -119,19 +119,19 @@ class ValList extends Value {
     var i = index!.intValue();
     if (i < 0) i += values.length;
     if (i < 0 || i >= values.length) {
-      throw MiniscriptException("Index Error (list index $index out of range)");
+      throw RuntimeException("Index Error (list index $index out of range)");
     }
     values[i] = value;
   }
 
   Value getElem(Value index) {
     if (index is! ValNumber) {
-      throw MiniscriptException("List index must be numeric");
+      throw RuntimeException("List index must be numeric");
     }
     var i = index.intValue();
     if (i < 0) i += values.length;
     if (i < 0 || i >= values.length) {
-      throw MiniscriptException("Index Error (list index $index out of range)");
+      throw RuntimeException("Index Error (list index $index out of range)");
     }
     return values[i]!;
   }
