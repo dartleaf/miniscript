@@ -706,9 +706,8 @@ class Intrinsics {
         if (map.map.isEmpty) return IntrinsicResult.null_;
 
         final key = map.map.keys.last;
-        final value = map.map[key]!;
         map.map.remove(key);
-        return IntrinsicResult(value);
+        return IntrinsicResult(key);
       }
 
       return IntrinsicResult.null_;
@@ -765,7 +764,7 @@ class Intrinsics {
         self.values.add(value);
         return IntrinsicResult(self);
       } else if (self is ValMap) {
-        self.map[value] = value;
+        self.map[value] = ValNumber.one;
         return IntrinsicResult(self);
       }
 
