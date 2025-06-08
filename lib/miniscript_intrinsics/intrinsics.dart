@@ -384,21 +384,20 @@ class Intrinsics {
               (x) => x == null ? value == null : x.equality(value) == 1);
         } else {
           var afterIdx = after.intValue();
-          if (afterIdx < 0) afterIdx += list.length;
-          if (afterIdx < -1 || afterIdx >= list.length - 1) {
+          if (afterIdx < -1) afterIdx += list.length;
+          if (afterIdx < -1 || afterIdx >= list.length - 1)
             return IntrinsicResult.null_;
-          }
+
           idx = list.indexWhere(
               (x) => x == null ? value == null : x.equality(value) == 1,
               afterIdx + 1);
         }
 
-        if (idx >= 0) {
-          return IntrinsicResult.fromNum(idx.toDouble());
-        }
+        if (idx >= 0) return IntrinsicResult.fromNum(idx.toDouble());
       } else if (self is ValString) {
-        final str = (self).value;
+        final str = self.value;
         if (value == null) return IntrinsicResult.null_;
+
         final s = value.toString();
         int idx;
 
@@ -406,28 +405,27 @@ class Intrinsics {
           idx = str.indexOf(s);
         } else {
           var afterIdx = after.intValue();
-          if (afterIdx < 0) afterIdx += str.length;
-          if (afterIdx < -1 || afterIdx >= str.length - 1) {
+          if (afterIdx < -1) afterIdx += str.length;
+          if (afterIdx < -1 || afterIdx >= str.length - 1)
             return IntrinsicResult.null_;
-          }
+
           idx = str.indexOf(s, afterIdx + 1);
         }
 
-        if (idx >= 0) {
-          return IntrinsicResult.fromNum(idx.toDouble());
-        }
+        if (idx >= 0) return IntrinsicResult.fromNum(idx.toDouble());
       } else if (self is ValMap) {
         final map = self;
-        var sawAfter = after == null;
+        var sawAfter = (after == null);
 
-        for (final entry in map.map.entries) {
+        for (final key in map.map.keys) {
           if (!sawAfter) {
-            if (entry.key!.equality(after) == 1) sawAfter = true;
+            if (key?.equality(after) == 1) sawAfter = true;
           } else {
-            if (entry.value == null
+            final mapValue = map.map[key];
+            if (mapValue == null
                 ? value == null
-                : entry.value!.equality(value) == 1) {
-              return IntrinsicResult(entry.key!);
+                : mapValue.equality(value) == 1) {
+              return IntrinsicResult(key);
             }
           }
         }
