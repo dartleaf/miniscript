@@ -10,6 +10,7 @@ import 'package:miniscript/miniscript_types/function.dart';
 import 'package:miniscript/miniscript_types/value.dart';
 import 'package:miniscript/miniscript_types/value_list.dart';
 import 'package:miniscript/miniscript_types/value_map.dart';
+import 'package:miniscript/miniscript_types/value_null.dart';
 import 'package:miniscript/miniscript_types/value_number.dart';
 import 'package:miniscript/miniscript_types/value_seq_elem.dart';
 import 'package:miniscript/miniscript_types/value_string.dart';
@@ -271,9 +272,15 @@ class Line {
 
     // check for special cases of comparison to null (works with any type)
     if (op == LineOp.aEqualB && (opA == null || opB == null)) {
+      if ((opA == null || opA is ValNull) && (opB == null || opB is ValNull)) {
+        return ValNumber.one;
+      }
       return ValNumber.truth(opA == opB);
     }
     if (op == LineOp.aNotEqualB && (opA == null || opB == null)) {
+      if ((opA == null || opA is ValNull) && (opB == null || opB is ValNull)) {
+        return ValNumber.zero;
+      }
       return ValNumber.truth(opA != opB);
     }
 
@@ -320,8 +327,11 @@ class Line {
           // they execute directly in the current context.  (But usually, the
           // current context is a wrapper function that was invoked via
           // Op.CallFunction, so it got a parameter context at that time.)
-          final result =
-              Intrinsic.execute(fA.toInt(), context, context.partialResult);
+          final result = Intrinsic.execute(
+            fA.toInt(),
+            context,
+            context.partialResult,
+          );
           if (result.done) {
             context.partialResult = null;
             return result.result;

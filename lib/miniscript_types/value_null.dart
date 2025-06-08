@@ -59,7 +59,7 @@ class ValNull extends Value {
 
   @override
   double equality(Value? rhs) {
-    return (rhs == null || rhs is ValNull ? 1 : 0);
+    return ((rhs == null || rhs is ValNull) ? 1 : 0);
   }
 
   static final ValNull _inst = ValNull._();
