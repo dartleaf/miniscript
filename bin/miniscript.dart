@@ -5,10 +5,6 @@ import 'package:miniscript/miniscript_interpreter.dart';
 import 'package:miniscript/miniscript_intrinsics/host_info.dart';
 import 'package:miniscript/miniscript_unit_test.dart';
 
-void log(String message) {
-  print(message);
-}
-
 void main(List<String> args) {
   if (args.isNotEmpty) {
     if (args[0] == "--test") {
