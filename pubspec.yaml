@@ -1,6 +1,6 @@
 name: miniscript
 description: A MiniScript interpreter for Dart.
-version: 1.6.2-1
+version: 1.6.2-2
 homepage: https://github.com/dartleaf/miniscript
 
 environment:
