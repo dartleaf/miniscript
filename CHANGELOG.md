@@ -1,6 +1,6 @@
 ## 1.6.2-3
 
-Add binary
+Add binary executable to package spec.
 
 ## 1.6.2-2
 
