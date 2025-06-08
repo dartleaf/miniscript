@@ -228,7 +228,7 @@ void test(
     for (int i = 0; i < minLen; i++) {
       if (actualOutput[i] != expectedOutput[i]) {
         print(
-          "TEST FAILED AT LINE ${outputLineNum + i}\n  EXPECTED: ${expectedOutput[i]}\n    ACTUAL: ${actualOutput[i]}",
+          "TEST FAILED AT LINE ${outputLineNum + i + 1}\n  EXPECTED: ${expectedOutput[i]}\n    ACTUAL: ${actualOutput[i]}",
         );
         TestCounter.fail();
         hasError = true;
