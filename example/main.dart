@@ -8,6 +8,10 @@ void main() {
   miniscript.standardOutput = (String s, bool eol) => print(s, lineBreak: eol);
   miniscript.implicitOutput = miniscript.standardOutput;
   miniscript.compile();
+
+  while (!miniscript.done) {
+    miniscript.runUntilDone();
+  }
 }
 
 void print(String s, {bool lineBreak = true}) {
