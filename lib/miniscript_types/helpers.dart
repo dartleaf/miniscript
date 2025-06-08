@@ -1,6 +1,7 @@
 // Copyright © 2025 by the authors of the project. All rights reserved.
 
 import 'package:miniscript/miniscript_types/value.dart';
+import 'package:miniscript/miniscript_types/value_list.dart';
 import 'package:miniscript/miniscript_types/value_number.dart';
 import 'package:miniscript/miniscript_types/value_string.dart';
 
@@ -234,6 +235,13 @@ bool isIdentical(Value? a, Value? b) {
     return a.value == b.value;
   }
   if (a == null && b == null) return true;
+  if (a is ValList && b is ValList) {
+    if (a.values.length != b.values.length) return false;
+    for (int i = 0; i < a.values.length; i++) {
+      if (!isIdentical(a.values[i], b.values[i])) return false;
+    }
+    return true;
+  }
 
   return identical(a, b);
 }

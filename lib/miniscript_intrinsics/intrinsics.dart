@@ -385,8 +385,9 @@ class Intrinsics {
         } else {
           var afterIdx = after.intValue();
           if (afterIdx < -1) afterIdx += list.length;
-          if (afterIdx < -1 || afterIdx >= list.length - 1)
+          if (afterIdx < -1 || afterIdx >= list.length - 1) {
             return IntrinsicResult.null_;
+          }
 
           idx = list.indexWhere(
               (x) => x == null ? value == null : x.equality(value) == 1,
@@ -406,8 +407,9 @@ class Intrinsics {
         } else {
           var afterIdx = after.intValue();
           if (afterIdx < -1) afterIdx += str.length;
-          if (afterIdx < -1 || afterIdx >= str.length - 1)
+          if (afterIdx < -1 || afterIdx >= str.length - 1) {
             return IntrinsicResult.null_;
+          }
 
           idx = str.indexOf(s, afterIdx + 1);
         }
