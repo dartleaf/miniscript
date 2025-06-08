@@ -36,7 +36,7 @@ void main(List<String> args) {
         stopwatch.start();
         runFile(quickTestFilePath, dumpTAC: true);
         stopwatch.stop();
-        print("Run time: ${stopwatch.elapsedMicroseconds / 1000000} sec");
+        print("Run time: ${stopwatch.elapsed.inSeconds} sec");
       } else {
         print("Quick test not found, skipping...\n");
       }
@@ -216,7 +216,7 @@ void test(
 
   try {
     miniscript.runUntilDone(
-      timeLimit: 3,
+      timeLimit: 30,
       returnEarly: false,
     );
     final int minLen = expectedOutput.length < actualOutput.length

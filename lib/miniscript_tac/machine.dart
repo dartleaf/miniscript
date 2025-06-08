@@ -73,7 +73,8 @@ class Machine {
 
   void step() {
     if (stack.isEmpty) return; // not even a global context
-    stopwatch ??= Stopwatch()..start();
+    stopwatch ??= Stopwatch();
+    stopwatch!.start();
     var context = stack.last;
     while (context.done) {
       if (stack.length == 1) return; // all done (can't pop the global context)
@@ -98,6 +99,7 @@ class Machine {
 
       rethrow;
     }
+    stopwatch!.stop();
   }
 
   /// Directly invoke a ValFunction by manually pushing it onto the call stack.

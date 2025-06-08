@@ -1408,7 +1408,7 @@ class Intrinsics {
     f = Intrinsic.create("time");
     f.code = (context, [partialResult]) {
       return IntrinsicResult.fromNum(
-        context.vm!.stopwatch!.elapsedMilliseconds.toDouble() / 1000.0,
+        context.vm!.stopwatch!.elapsed.inSeconds.toDouble(),
       );
     };
 
@@ -1515,7 +1515,7 @@ class Intrinsics {
     f = Intrinsic.create("wait");
     f.addParam("seconds", ValNumber.one);
     f.code = (context, [partialResult]) {
-      final now = context.vm!.stopwatch!.elapsedMilliseconds.toDouble();
+      final now = context.vm!.stopwatch!.elapsed.inSeconds.toDouble();
 
       if (partialResult == null) {
         // Just starting our wait; calculate end time and return as partial result
