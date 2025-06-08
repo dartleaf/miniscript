@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:miniscript/miniscript_interpreter.dart';
 
 void main() {
-  final miniscript = Interpreter(source: 'print("Hello, Miniscript!");\n');
+  final miniscript = Interpreter(source: 'print "Hello, Miniscript!"');
 
   miniscript.standardOutput = (String s, bool eol) => print(s, lineBreak: eol);
   miniscript.implicitOutput = miniscript.standardOutput;
