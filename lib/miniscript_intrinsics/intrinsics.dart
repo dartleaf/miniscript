@@ -584,8 +584,7 @@ class Intrinsics {
     f.addParam("x", ValNumber.zero);
     f.addParam("base", ValNumber(10));
     f.code = (context, [partialResult]) {
-      final xVal = context.getLocal("x")!;
-      final x = xVal.doubleValue();
+      final x = context.getLocalDouble("x")!;
       final b = context.getLocalDouble("base")!;
 
       double result;

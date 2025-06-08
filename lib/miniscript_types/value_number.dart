@@ -40,7 +40,7 @@ class ValNumber extends Value {
 
   String _formatDecimal(double num) {
     // Helper function to format decimal numbers with up to 6 decimal places
-    String str = num.toString();
+    String str = ((num * 1000000).round() / 1000000).toString();
     if (str.contains('.')) {
       List<String> parts = str.split('.');
       String decimalPart = parts[1];
