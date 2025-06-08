@@ -1,3 +1,5 @@
+// Copyright © 2025 by the authors of the project. All rights reserved.
+
 import '../miniscript_tac/tac.dart' as tac;
 import './value_map.dart' show ValMap;
 import './value.dart' show Value;

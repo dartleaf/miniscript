@@ -1,12 +1,15 @@
-/*	miniscript_interpreter.dart
+// Copyright © 2025 by the authors of the project. All rights reserved.
 
-The only class in this file is Interpreter, which is your main interface 
-to the MiniScript system. You give Interpreter some MiniScript source 
-code, and tell it where to send its output (via function typedefs called
-TextOutputMethod). Then you typically call runUntilDone, which returns 
-when either the script has stopped or the given timeout has passed.  
+/*	
+  miniscript_interpreter.dart
 
-For details, see Chapters 1-3 of the MiniScript Integration Guide.
+  The only class in this file is Interpreter, which is your main interface 
+  to the MiniScript system. You give Interpreter some MiniScript source 
+  code, and tell it where to send its output (via function typedefs called
+  TextOutputMethod). Then you typically call runUntilDone, which returns 
+  when either the script has stopped or the given timeout has passed.  
+
+  For details, see Chapters 1-3 of the MiniScript Integration Guide.
 */
 
 import 'package:miniscript/miniscript_tac/tac.dart' as tac;

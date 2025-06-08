@@ -1,3 +1,5 @@
+// Copyright © 2025 by the authors of the project. All rights reserved.
+
 import 'package:miniscript/miniscript_interpreter.dart';
 import 'package:miniscript/miniscript_types/function.dart';
 import 'package:miniscript/miniscript_types/value_null.dart';

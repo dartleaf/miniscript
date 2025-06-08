@@ -1,3 +1,5 @@
+// Copyright © 2025 by the authors of the project. All rights reserved.
+
 import '../miniscript_tac/tac.dart' as tac;
 import '../miniscript_types/value_number.dart';
 import '../miniscript_errors.dart';

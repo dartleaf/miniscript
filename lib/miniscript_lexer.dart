@@ -1,10 +1,13 @@
-/*  miniscript_lexer.dart
+// Copyright © 2025 by the authors of the project. All rights reserved.
 
-This file is used internally during parsing of the code, breaking source
-code text into a series of tokens.
+/*  
+  miniscript_lexer.dart
 
-Unless you're writing a fancy MiniScript code editor, you probably don't 
-need to worry about this stuff. 
+  This file is used internally during parsing of the code, breaking source
+  code text into a series of tokens.
+
+  Unless you're writing a fancy MiniScript code editor, you probably don't 
+  need to worry about this stuff. 
 
 */
 

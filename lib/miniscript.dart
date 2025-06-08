@@ -1,3 +1,5 @@
+// Copyright © 2025 by the authors of the project. All rights reserved.
+
 enum ErrorType { syntax }
 
 class Error {

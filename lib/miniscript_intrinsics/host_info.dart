@@ -1,3 +1,5 @@
+// Copyright © 2025 by the authors of the project. All rights reserved.
+
 /// Information about the app hosting MiniScript.
 class HostInfo {
   static String name = "MiniScript-Dart";

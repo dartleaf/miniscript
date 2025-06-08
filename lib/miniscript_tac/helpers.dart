@@ -1,3 +1,5 @@
+// Copyright © 2025 by the authors of the project. All rights reserved.
+
 // Helper functions for creating tac values
 import 'package:miniscript/miniscript_intrinsics/intrinsic.dart';
 import 'package:miniscript/miniscript_types/value_number.dart';

@@ -1,3 +1,5 @@
+// Copyright © 2025 by the authors of the project. All rights reserved.
+
 import 'dart:io';
 import 'package:miniscript/miniscript_interpreter.dart';
 import 'package:miniscript/miniscript_intrinsics/host_info.dart';
@@ -21,7 +23,6 @@ void main(List<String> args) {
       }
 
       print("Miniscript test harness.\n");
-
       print("Running unit tests.\n");
       UnitTest.run();
 
@@ -39,6 +40,35 @@ void main(List<String> args) {
       } else {
         print("Quick test not found, skipping...\n");
       }
+      return;
+    }
+
+    if (args[0] == "--dump-tac") {
+      if (args.length < 2) {
+        print("Usage: miniscript --dump-tac <file>");
+        return;
+      }
+      // Dump TAC for the specified file
+      runFile(args[1], dumpTAC: true);
+      return;
+    }
+
+    if (args[0] == "--help" || args[0] == "-h") {
+      print("Usage: miniscript [options] [file]");
+      print("Options:");
+      print("  --test [--integration <file>]: Run the unit tests.");
+      print("  --dump-tac <file>: Dump the TAC for the specified file.");
+      print("  --help, -h: Show this help message.");
+      print("  --version, -v: Show the MiniScript version.");
+      print("  <file>: Run the specified MiniScript file.");
+      return;
+    }
+
+    if (args[0] == "--version" || args[0] == "-v") {
+      print("MiniScript Dart version ${HostInfo.version}");
+      print("Build date: ${HostInfo.buildDate}");
+      print("Host: ${HostInfo.name}");
+      print("Info: ${HostInfo.info}");
       return;
     }
 
@@ -183,15 +213,15 @@ void test(
   miniscript.implicitOutput = miniscript.standardOutput;
 
   bool hasError = false;
-  final int minLen = expectedOutput.length < actualOutput.length
-      ? expectedOutput.length
-      : actualOutput.length;
 
   try {
     miniscript.runUntilDone(
       timeLimit: 3,
       returnEarly: false,
     );
+    final int minLen = expectedOutput.length < actualOutput.length
+        ? expectedOutput.length
+        : actualOutput.length;
 
     // Compare actual output with expected output
 

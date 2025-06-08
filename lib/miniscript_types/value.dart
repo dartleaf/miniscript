@@ -1,3 +1,5 @@
+// Copyright © 2025 by the authors of the project. All rights reserved.
+
 import 'package:miniscript/miniscript_types/helpers.dart';
 
 import '../miniscript_tac/tac.dart' as tac;
