@@ -55,6 +55,7 @@ class Machine {
         standardOutput = standardOutput ?? ((s, eol) => print(s)) {
     globalContext.vm = this;
     stack = List<Context>.from([globalContext]);
+    stopwatch ??= Stopwatch();
   }
 
   void stop() {

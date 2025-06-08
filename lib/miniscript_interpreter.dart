@@ -194,7 +194,7 @@ class Interpreter {
       return;
     }
 
-    double startTime = vm!.stopwatch!.elapsed.inMilliseconds / 1000.0;
+    double startTime = vm!.stopwatch!.elapsed.inSeconds.toDouble();
     int startImpResultCount = vm!.globalContext!.implicitResultCounter;
     vm!.storeImplicit = (implicitOutput != null);
     vm!.yielding = false;
@@ -203,8 +203,7 @@ class Interpreter {
       if (sourceLine != null) parser!.parse(sourceLine, replMode: true);
       if (!parser!.needMoreInput()) {
         while (!vm!.done && !vm!.yielding) {
-          if (vm!.stopwatch!.elapsed.inMilliseconds / 1000.0 - startTime >
-              timeLimit) {
+          if (vm!.stopwatch!.elapsed.inSeconds - startTime > timeLimit) {
             return; // time's up for now!
           }
           vm!.step();

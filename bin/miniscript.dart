@@ -3,6 +3,8 @@
 import 'dart:io';
 import 'package:miniscript/miniscript_interpreter.dart';
 import 'package:miniscript/miniscript_intrinsics/host_info.dart';
+import 'package:miniscript/miniscript_intrinsics/intrinsic.dart';
+import 'package:miniscript/miniscript_types/value_number.dart';
 import 'package:miniscript/miniscript_unit_test.dart';
 
 void main(List<String> args) {
@@ -76,6 +78,18 @@ void main(List<String> args) {
   // Interactive REPL mode
   final repl = Interpreter();
   repl.implicitOutput = repl.standardOutput;
+
+  print("MiniScript Dart REPL version ${HostInfo.version}");
+  print("Type 'exit' or 'quit' to exit.");
+
+  Intrinsic f = Intrinsic.create('exit');
+  f.addParam("code", ValNumber.zero);
+  f.code = (context, [partialResult]) {
+    print("Exiting MiniScript REPL.");
+    exit(context.getLocalInt("code")!);
+  };
+
+  repl.setGlobalValue("quit", f.valFunction);
 
   while (true) {
     stdout.write(repl.needMoreInput() ? ">>> " : "> ");

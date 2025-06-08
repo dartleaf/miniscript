@@ -1,3 +1,7 @@
+## 1.6.2-4
+
+Fix REPL.
+
 ## 1.6.2-3
 
 Add binary executable to package spec.
