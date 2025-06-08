@@ -1173,9 +1173,11 @@ class Intrinsics {
       if (byKey == null) {
         // Simple case: sort the values as themselves
         list.sort((a, b) {
-          if (a == null && b == null) return 0;
-          if (a == null) return ascending ? -1 : 1;
-          if (b == null) return ascending ? 1 : -1;
+          if ((a == null || a is ValNull) && (b == null || b is ValNull)) {
+            return 0;
+          }
+          if ((a == null || a is ValNull)) return ascending ? 1 : -1;
+          if ((b == null || b is ValNull)) return ascending ? -1 : 1;
           final comp = Value.compare(a, b);
           return ascending ? comp : -comp;
         });
