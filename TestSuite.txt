@@ -964,8 +964,7 @@ end for
 49
 ======================================================================
 ==== For loop iteration over a map (getting key/value pairs).
-==== (Note that order is not really 
-      if (opA == null && opB == null) {defined, so we have to gather
+==== (Note that order is not really if (opA == null && opB == null) {defined, so we have to gather
 ==== up the results and sort them to get a well-defined result.)
 d = {"one":1, "two":2, "three":3}
 results = []

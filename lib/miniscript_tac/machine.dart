@@ -45,7 +45,7 @@ class Machine {
   Stopwatch? stopwatch;
 
   double get runTime {
-    return stopwatch == null ? 0 : stopwatch!.elapsed.inSeconds.toDouble();
+    return stopwatch == null ? 0 : stopwatch!.elapsedMicroseconds / 1000000;
   }
 
   bool get done => stack.length <= 1 && stack.last.done;
@@ -63,6 +63,7 @@ class Machine {
       stack.removeLast();
     }
     stack.last.jumpToEnd();
+    stopwatch?.stop();
   }
 
   void reset() {
@@ -70,6 +71,7 @@ class Machine {
       stack.removeLast();
     }
     stack.last.reset(false);
+    stopwatch?.reset();
   }
 
   void step() {

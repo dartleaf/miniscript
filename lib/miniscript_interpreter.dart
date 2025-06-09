@@ -144,11 +144,11 @@ class Interpreter {
         if (vm == null) return; // (must have been some error)
       }
       startImpResultCount = vm!.globalContext!.implicitResultCounter;
-      double startTime = DateTime.now().second.toDouble();
+      double startTime = vm!.runTime;
       vm!.yielding = false;
       while (!vm!.done && !vm!.yielding) {
         // ToDo: find a substitute for vm.runTime, or make it go faster
-        if (DateTime.now().second.toDouble() - startTime > timeLimit) {
+        if (vm!.runTime - startTime > timeLimit) {
           return; // time's up for now!
         }
         vm!.step(); // update the machine
@@ -194,7 +194,7 @@ class Interpreter {
       return;
     }
 
-    double startTime = vm!.stopwatch!.elapsed.inSeconds.toDouble();
+    double startTime = vm!.runTime;
     int startImpResultCount = vm!.globalContext!.implicitResultCounter;
     vm!.storeImplicit = (implicitOutput != null);
     vm!.yielding = false;
@@ -203,7 +203,7 @@ class Interpreter {
       if (sourceLine != null) parser!.parse(sourceLine, replMode: true);
       if (!parser!.needMoreInput()) {
         while (!vm!.done && !vm!.yielding) {
-          if (vm!.stopwatch!.elapsed.inSeconds - startTime > timeLimit) {
+          if (vm!.runTime - startTime > timeLimit) {
             return; // time's up for now!
           }
           vm!.step();

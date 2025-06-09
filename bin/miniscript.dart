@@ -24,8 +24,6 @@ void main(List<String> args) {
       print("Running unit tests.\n");
       UnitTest.run();
 
-      print("\n");
-
       const String quickTestFilePath = "../QuickTest.ms";
 
       if (File(quickTestFilePath).existsSync()) {
@@ -34,7 +32,7 @@ void main(List<String> args) {
         stopwatch.start();
         runFile(quickTestFilePath, dumpTAC: true);
         stopwatch.stop();
-        print("Run time: ${stopwatch.elapsed.inSeconds} sec");
+        print("Run time: ${stopwatch.elapsed.inMicroseconds / 1000000} sec");
       } else {
         print("Quick test not found, skipping...\n");
       }
