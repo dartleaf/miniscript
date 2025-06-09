@@ -1,3 +1,9 @@
+# CHANGELOG
+
+## 1.6.2-6
+
+Add precision to time usages by using microseconds divided by 1,000,000.
+
 ## 1.6.2-5
 
 Fix example.
