@@ -57,6 +57,7 @@ void main(List<String> args) {
       print("  --help, -h: Show this help message.");
       print("  --version, -v: Show the MiniScript version.");
       print("  <file>: Run the specified MiniScript file.");
+      print("  If no file is specified, enter REPL mode.");
       return;
     }
 

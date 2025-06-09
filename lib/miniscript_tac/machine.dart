@@ -44,10 +44,12 @@ class Machine {
   List<Context> stack = [];
   Stopwatch? stopwatch;
 
+  /// Returns the total run time of the machine in seconds.
   double get runTime {
     return stopwatch == null ? 0 : stopwatch!.elapsedMicroseconds / 1000000;
   }
 
+  /// Returns true if the machine has finished running.
   bool get done => stack.length <= 1 && stack.last.done;
 
   Machine(Context globalContext, TextOutputMethod? standardOutput)
