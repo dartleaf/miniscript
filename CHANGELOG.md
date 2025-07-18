@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.6.2-7
+
+Able to insert optional map into ValMap constructor.
+
 ## 1.6.2-6
 
 Add precision to time usages by using microseconds divided by 1,000,000.

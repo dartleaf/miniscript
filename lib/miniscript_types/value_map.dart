@@ -21,7 +21,7 @@ class ValMap<T> extends Value {
   /// to be longer than this.  So, use a reasonably generous value.
   static const int maxIsaDepth = 256;
 
-  final Dictionary map;
+  late final Dictionary map;
 
   /// Assignment override function: return true to cancel (override)
   /// the assignment, or false to allow it to happen as normal.
@@ -37,7 +37,9 @@ class ValMap<T> extends Value {
   // to proceed with normal map look-up.
   bool Function(Value? key, ValuePointer<Value> valuePointer)? evalOverride;
 
-  ValMap() : map = Dictionary();
+  ValMap([Dictionary? map]) {
+    this.map = map ?? Dictionary();
+  }
 
   /// A map is considered true if it is nonempty.
   @override
