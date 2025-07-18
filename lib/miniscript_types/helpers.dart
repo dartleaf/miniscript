@@ -6,7 +6,11 @@ import 'package:miniscript/miniscript_types/value_number.dart';
 import 'package:miniscript/miniscript_types/value_string.dart';
 
 class Dictionary implements Map<Value?, Value?> {
-  final Map<Value?, Value?> realMap = {};
+  late final Map<Value?, Value?> realMap;
+
+  Dictionary([Map<Value?, Value?> initialMap = const {}]) {
+    realMap = initialMap;
+  }
 
   Value? getExistingKey(Value? key) {
     for (var entry in realMap.entries) {

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.6.2-9
+
+Make the real map property in the Dictionary an optional parameter.
+
 ## 1.6.2-8
 
 Make the real map property in the Dictionary public.
