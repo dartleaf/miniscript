@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.6.2-8
+
+Make the real map property in the Dictionary public.
+
 ## 1.6.2-7
 
 Able to insert optional map into ValMap constructor.

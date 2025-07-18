@@ -6,10 +6,10 @@ import 'package:miniscript/miniscript_types/value_number.dart';
 import 'package:miniscript/miniscript_types/value_string.dart';
 
 class Dictionary implements Map<Value?, Value?> {
-  final Map<Value?, Value?> _map = {};
+  final Map<Value?, Value?> realMap = {};
 
   Value? getExistingKey(Value? key) {
-    for (var entry in _map.entries) {
+    for (var entry in realMap.entries) {
       if (isIdentical(entry.key, key)) {
         return entry.key;
       }
@@ -23,12 +23,12 @@ class Dictionary implements Map<Value?, Value?> {
       throw ArgumentError('Key must be of type Value');
     }
 
-    return _map[getExistingKey(key)];
+    return realMap[getExistingKey(key)];
   }
 
   @override
   void operator []=(Value? key, Value? value) {
-    _map[getExistingKey(key)] = value;
+    realMap[getExistingKey(key)] = value;
   }
 
   @override
@@ -36,7 +36,7 @@ class Dictionary implements Map<Value?, Value?> {
     for (var entry in other.entries) {
       final key = getExistingKey(entry.key);
 
-      _map[key] = entry.value;
+      realMap[key] = entry.value;
     }
   }
 
@@ -45,7 +45,7 @@ class Dictionary implements Map<Value?, Value?> {
     for (var entry in newEntries) {
       final key = getExistingKey(entry.key);
 
-      _map[key] = entry.value;
+      realMap[key] = entry.value;
     }
   }
 
@@ -56,7 +56,7 @@ class Dictionary implements Map<Value?, Value?> {
 
   @override
   void clear() {
-    _map.clear();
+    realMap.clear();
   }
 
   @override
@@ -65,7 +65,7 @@ class Dictionary implements Map<Value?, Value?> {
       throw ArgumentError('Key must be of type Value');
     }
 
-    return _map.containsKey(getExistingKey(key));
+    return realMap.containsKey(getExistingKey(key));
   }
 
   @override
@@ -74,7 +74,7 @@ class Dictionary implements Map<Value?, Value?> {
       throw ArgumentError('Value must be of type Value');
     }
 
-    for (var entry in _map.entries) {
+    for (var entry in realMap.entries) {
       if (isIdentical(entry.value, value)) {
         return true;
       }
@@ -84,26 +84,26 @@ class Dictionary implements Map<Value?, Value?> {
   }
 
   @override
-  Iterable<MapEntry<Value?, Value?>> get entries => _map.entries;
+  Iterable<MapEntry<Value?, Value?>> get entries => realMap.entries;
 
   @override
   void forEach(void Function(Value? key, Value? value) action) {
-    for (var entry in _map.entries) {
+    for (var entry in realMap.entries) {
       action(entry.key, entry.value);
     }
   }
 
   @override
-  bool get isEmpty => _map.isEmpty;
+  bool get isEmpty => realMap.isEmpty;
 
   @override
-  bool get isNotEmpty => _map.isNotEmpty;
+  bool get isNotEmpty => realMap.isNotEmpty;
 
   @override
-  Iterable<Value?> get keys => _map.keys;
+  Iterable<Value?> get keys => realMap.keys;
 
   @override
-  int get length => _map.length;
+  int get length => realMap.length;
 
   @override
   Map<K2, V2> map<K2, V2>(
@@ -117,11 +117,11 @@ class Dictionary implements Map<Value?, Value?> {
   @override
   Value? putIfAbsent(Value? key, Value? Function() ifAbsent) {
     final existingKey = getExistingKey(key);
-    if (_map.containsKey(existingKey)) {
-      return _map[existingKey];
+    if (realMap.containsKey(existingKey)) {
+      return realMap[existingKey];
     } else {
       final newValue = ifAbsent();
-      _map[key] = newValue;
+      realMap[key] = newValue;
       return newValue;
     }
   }
@@ -133,15 +133,15 @@ class Dictionary implements Map<Value?, Value?> {
     }
 
     final existingKey = getExistingKey(key);
-    if (_map.containsKey(existingKey)) {
-      return _map.remove(existingKey);
+    if (realMap.containsKey(existingKey)) {
+      return realMap.remove(existingKey);
     }
     return null;
   }
 
   @override
   void removeWhere(bool Function(Value? key, Value? value) test) {
-    _map.removeWhere((key, value) => test(key, value));
+    realMap.removeWhere((key, value) => test(key, value));
   }
 
   @override
@@ -151,15 +151,15 @@ class Dictionary implements Map<Value?, Value?> {
     Value? Function()? ifAbsent,
   }) {
     final existingKey = getExistingKey(key);
-    if (_map.containsKey(existingKey)) {
-      final currentValue = _map[existingKey];
+    if (realMap.containsKey(existingKey)) {
+      final currentValue = realMap[existingKey];
       final newValue = update(currentValue);
-      _map[existingKey] = newValue;
+      realMap[existingKey] = newValue;
       return newValue;
     }
     if (ifAbsent != null) {
       final newValue = ifAbsent();
-      _map[key] = newValue;
+      realMap[key] = newValue;
       return newValue;
     }
     throw ArgumentError('Key not found and no ifAbsent provided');
@@ -167,11 +167,11 @@ class Dictionary implements Map<Value?, Value?> {
 
   @override
   void updateAll(Value? Function(Value? key, Value? value) update) {
-    _map.updateAll((key, value) => update(key, value));
+    realMap.updateAll((key, value) => update(key, value));
   }
 
   @override
-  Iterable<Value?> get values => _map.values;
+  Iterable<Value?> get values => realMap.values;
 }
 
 /// ValuePair: used internally when working out whether two maps
